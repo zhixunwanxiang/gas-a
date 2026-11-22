@@ -1,0 +1,16 @@
+{
+  "extends": "a.live.json",
+  "runtime": "../gas1/runtime/a_adaptive",
+  "adaptive": {
+    "enabled": true,
+    "recent_weights": [
+      0.6,
+      0.3,
+      0.1
+    ],
+    "switch_margin": 0.005,
+    "hard_minimum_class_recall": {},
+    "forward_feedback": true,
+    "compact_prompts": true
+  }
+}

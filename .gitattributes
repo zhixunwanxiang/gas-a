@@ -1,0 +1,2 @@
+# Preserve exact bytes so restored data and source files retain their SHA-256.
+* -text

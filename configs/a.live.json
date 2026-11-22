@@ -1,0 +1,12 @@
+{
+  "extends": "a.json",
+  "runtime": "../gas1/runtime/a_live",
+  "live": {
+    "controller_model": "Qwen/Qwen3.8-27B",
+    "max_output_tokens": 768,
+    "selection_max_output_tokens": 512,
+    "model_timeout_seconds": 90,
+    "round_wall_seconds": 300,
+    "enable_thinking": false
+  }
+}

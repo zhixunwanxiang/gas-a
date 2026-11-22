@@ -1,0 +1,144 @@
+{
+  "train": "data/official_a/public/train.jsonl",
+  "validation": "data/official_a/public/validation.jsonl",
+  "baseline": "data/official_a/checkpoint.npz",
+  "runtime": "../gas1/runtime/a",
+  "rounds": 10,
+  "monitor": {
+    "psi_threshold": 0.2,
+    "ks_threshold": 0.2,
+    "mean_z_threshold": 1.0,
+    "minimum_samples": 30
+  },
+  "gate": {
+    "reject_zero_target_recall": true,
+    "target_recall_max_drop": 0.02,
+    "max_parent_fixed_f1_drop": 0.02,
+    "min_macro_f1_gain": 0.002,
+    "max_accuracy_drop": 0.02,
+    "max_class_recall_drop": 0.15,
+    "minimum_class_support": 20,
+    "rollback_macro_f1_drop": 0.01,
+    "minimum_class_recall": {
+      "Acetaldehyde": 0.5
+    }
+  },
+  "optimization": {
+    "max_candidates": 3,
+    "max_selected_experiments": 2,
+    "max_seconds_per_candidate": 30,
+    "max_epochs": 32,
+    "search_mode": "adaptive",
+    "select_best_epoch": true,
+    "early_stopping_patience": 6,
+    "robustness": {
+      "enabled": true,
+      "max_scenario_f1_drop": 0.02,
+      "max_worst_f1_drop": 0.005,
+      "ranking": "macro_f1"
+    }
+  },
+  "experiments": [
+    {
+      "name": "gentle",
+      "learning_rate": 0.0005,
+      "epochs": 3,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001
+    },
+    {
+      "name": "balanced",
+      "learning_rate": 0.001,
+      "epochs": 5,
+      "balance": 0.5,
+      "weak_boost": 1.5,
+      "l2": 0.0001
+    },
+    {
+      "name": "focal",
+      "learning_rate": 0.0005,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001,
+      "focal_gamma": 1.0
+    },
+    {
+      "name": "anchored",
+      "learning_rate": 0.0005,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001,
+      "anchor_l2": 0.01
+    },
+    {
+      "name": "head_adapt",
+      "learning_rate": 0.001,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001,
+      "feature_lr_scale": 0.25
+    },
+    {
+      "name": "head_only",
+      "learning_rate": 0.001,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001,
+      "freeze": "features"
+    },
+    {
+      "name": "features_only",
+      "learning_rate": 0.0005,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001,
+      "freeze": "head"
+    },
+    {
+      "name": "weak_class",
+      "learning_rate": 0.002,
+      "epochs": 5,
+      "balance": 0.5,
+      "weak_boost": 3.0,
+      "l2": 0.0001
+    },
+    {
+      "name": "sensor_robust",
+      "learning_rate": 0.0003,
+      "epochs": 8,
+      "balance": 0.25,
+      "weak_boost": 1.0,
+      "l2": 0.001,
+      "anchor_l2": 0.02,
+      "sensor_gain": 0.1,
+      "sensor_shift": 0.05,
+      "sensor_dropout": 0.05
+    },
+    {
+      "name": "noise_robust",
+      "learning_rate": 0.0003,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.001,
+      "anchor_l2": 0.02,
+      "input_noise": 0.05
+    }
+  ],
+  "architecture_choices": {
+    "widen_hidden": {"width_multiplier": 2},
+    "deepen_hidden": {"add_layers": 1},
+    "widen_deepen": {"width_multiplier": 2, "add_layers": 1}
+  },
+  "checkpoint_contract": "task_a_explicit_architecture_migration_v2",
+  "controller": {
+    "planning_mode": "compose",
+    "rejected_windows_before_pause": 3
+  }
+}

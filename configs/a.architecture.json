@@ -1,0 +1,42 @@
+{
+  "extends": "a.json",
+  "runtime": "../gas1/runtime/a_architecture",
+  "checkpoint_contract": "task_a_explicit_architecture_migration_v2",
+  "experiments": [
+    {
+      "name": "widen_hidden",
+      "architecture": {"width_multiplier": 2},
+      "learning_rate": 0.0005,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001
+    },
+    {
+      "name": "deepen_hidden",
+      "architecture": {"add_layers": 1},
+      "learning_rate": 0.0005,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001
+    },
+    {
+      "name": "widen_deepen",
+      "architecture": {"width_multiplier": 2, "add_layers": 1},
+      "learning_rate": 0.0005,
+      "epochs": 8,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001
+    },
+    {
+      "name": "gentle",
+      "learning_rate": 0.0005,
+      "epochs": 3,
+      "balance": 0.0,
+      "weak_boost": 1.0,
+      "l2": 0.0001
+    }
+  ]
+}

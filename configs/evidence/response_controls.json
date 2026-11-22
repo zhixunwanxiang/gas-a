@@ -1,0 +1,183 @@
+{
+  "scope": "developer_CPU_controls_on_public_data; NOT_platform_rounds; NOT_AI_decisions",
+  "parent_checkpoint_sha256": "sha256:fd1e08b2aad08b2e9754f9b2dfdc029481c0da7ecdedca0abb0ec6fcc818c757",
+  "train_sha256": "sha256:c724014feb2c968d144e167f4997d2ad2125df3825abf4306c9c87c8f08de6c0",
+  "validation_sha256": "sha256:6be1370388bf67d017f7426a51e149a65baf9bc1186f5f41f6731ce5006ffbee",
+  "source_sha256": {
+    "architecture.py": "sha256:78d21510d505ce5e61fdfb511c0535633feca442769e6cb62bb0b431c93adb94",
+    "response.py": "sha256:c479a1fd48ad0a0dc2d969f752ebe2004bc204ae6af22db46e6d38298529a6e8",
+    "optimize.py": "sha256:bedb1f3ea46ac54e59c352f5172bc7f6f8ebdd4d75b0babe971b0ceed3e682a2",
+    "robustness.py": "sha256:ab5259112ea9eea47d60a891ad6a654c347d736cc90945c444cc7c0dc716956d",
+    "quality.py": "sha256:7d69adbb4918f0b5f427be7cc9adbf6e0c75e11dbe840800ed95b0941892aaf3",
+    "controller_policy.py": "sha256:d4ad071a7c8336a4d720b63506c571b9450395242319513038ee50cf6ea7693c",
+    "adaptive.py": "sha256:a1bb32f6cf7a90f347709846206dc1a31102d22949086834cc2f22569937925f"
+  },
+  "quality_gate": {
+    "reject_zero_target_recall": true,
+    "target_recall_max_drop": 0.02,
+    "max_parent_fixed_f1_drop": 0.02,
+    "min_macro_f1_gain": 0.002,
+    "max_accuracy_drop": 0.02,
+    "max_class_recall_drop": 0.15,
+    "minimum_class_support": 20,
+    "rollback_macro_f1_drop": 0.01,
+    "minimum_class_recall": {
+      "Acetaldehyde": 0.5
+    }
+  },
+  "robustness_policy": {
+    "enabled": true,
+    "max_scenario_f1_drop": 0.02,
+    "max_worst_f1_drop": 0.005,
+    "ranking": "macro_f1"
+  },
+  "real_model_calls": 0,
+  "future_data_used": false,
+  "rows": [
+    {
+      "configuration": {
+        "name": "response_guard_1_0",
+        "learning_rate": 0.0001,
+        "batch_size": 32,
+        "epochs": 4,
+        "balance": 0.5,
+        "weak_boost": 1.0,
+        "l2": 0.0,
+        "response_adapter": {
+          "ridge": 10.0,
+          "strength": 16.0,
+          "guard_multiplier": 1.0
+        }
+      },
+      "macro_f1": 0.7832147804548831,
+      "recalls": {
+        "Ethanol": 0.9573170731707317,
+        "Ethylene": 0.9251497005988024,
+        "Ammonia": 1.0,
+        "Acetaldehyde": 0.12844036697247707,
+        "Acetone": 0.9830827067669173,
+        "Toluene": 1.0
+      },
+      "clean_gate": {
+        "accepted": false,
+        "reasons": [
+          "class_recall_below_minimum:Acetaldehyde"
+        ]
+      },
+      "robust_gate": {
+        "accepted": true,
+        "reasons": [],
+        "reference": "actual_parent_on_same_authorized_validation_cases",
+        "policy": {
+          "enabled": true,
+          "max_scenario_f1_drop": 0.02,
+          "max_worst_f1_drop": 0.005,
+          "ranking": "macro_f1"
+        },
+        "worst_f1_change": -0.00021333619082197774,
+        "mean_f1_change": 0.021981947518433076
+      },
+      "robust_worst_f1": 0.6584072908628971,
+      "checkpoint_sha256": "sha256:d530a1582e5b263afbb6c074a7e987476cdb34643b6a50fd9f6cdd82be3f838c",
+      "report_sha256": "sha256:ba59ea4a0139a3836b9830da23f5b5f2471c04ff20c0d9a8f0f07d4bdd4436b0"
+    },
+    {
+      "configuration": {
+        "name": "response_guard_1_5",
+        "learning_rate": 0.0001,
+        "batch_size": 32,
+        "epochs": 4,
+        "balance": 0.5,
+        "weak_boost": 1.0,
+        "l2": 0.0,
+        "response_adapter": {
+          "ridge": 10.0,
+          "strength": 16.0,
+          "guard_multiplier": 1.5
+        }
+      },
+      "macro_f1": 0.9046165933141782,
+      "recalls": {
+        "Ethanol": 0.9512195121951219,
+        "Ethylene": 0.9580838323353293,
+        "Ammonia": 1.0,
+        "Acetaldehyde": 0.7706422018348624,
+        "Acetone": 0.9586466165413534,
+        "Toluene": 1.0
+      },
+      "clean_gate": {
+        "accepted": true,
+        "reasons": [
+          "quality_gates_passed"
+        ]
+      },
+      "robust_gate": {
+        "accepted": true,
+        "reasons": [],
+        "reference": "actual_parent_on_same_authorized_validation_cases",
+        "policy": {
+          "enabled": true,
+          "max_scenario_f1_drop": 0.02,
+          "max_worst_f1_drop": 0.005,
+          "ranking": "macro_f1"
+        },
+        "worst_f1_change": 0.033477153649509095,
+        "mean_f1_change": 0.08308310997956214
+      },
+      "robust_worst_f1": 0.6920977807032281,
+      "checkpoint_sha256": "sha256:bfa725738b7e527a49775b55857ae818bd2b51767c1d23611cf3e3ccb4bd7fc2",
+      "report_sha256": "sha256:404c336f3b436639353620d0a1cd1b621fd927a1129e11cb3450ab95a084e73f"
+    },
+    {
+      "configuration": {
+        "name": "response_guard_2_0",
+        "learning_rate": 0.0001,
+        "batch_size": 32,
+        "epochs": 4,
+        "balance": 0.5,
+        "weak_boost": 1.0,
+        "l2": 0.0,
+        "response_adapter": {
+          "ridge": 10.0,
+          "strength": 16.0,
+          "guard_multiplier": 2.0
+        }
+      },
+      "macro_f1": 0.9318753022090274,
+      "recalls": {
+        "Ethanol": 0.9329268292682927,
+        "Ethylene": 0.9730538922155688,
+        "Ammonia": 1.0,
+        "Acetaldehyde": 0.963302752293578,
+        "Acetone": 0.9586466165413534,
+        "Toluene": 1.0
+      },
+      "clean_gate": {
+        "accepted": true,
+        "reasons": [
+          "quality_gates_passed"
+        ]
+      },
+      "robust_gate": {
+        "accepted": false,
+        "reasons": [
+          "robust_worst_case_regression",
+          "robust_scenario_regression:sensor_09_missing"
+        ],
+        "reference": "actual_parent_on_same_authorized_validation_cases",
+        "policy": {
+          "enabled": true,
+          "max_scenario_f1_drop": 0.02,
+          "max_worst_f1_drop": 0.005,
+          "ranking": "macro_f1"
+        },
+        "worst_f1_change": -0.02770820441948718,
+        "mean_f1_change": 0.12111920206636084
+      },
+      "robust_worst_f1": 0.6309124226342319,
+      "checkpoint_sha256": "sha256:8ab7f3ae75e1c93b9b86e060ceb47a8f441606f12ccd8ba89c246931967f3bb1",
+      "report_sha256": "sha256:3215ae9d2515c0d7dff47783bbedc11c12404e46eca6ef968d1d13fc4a68c4b0"
+    }
+  ],
+  "reading": "仅为开发期同父同公开数据的实测先验；参数可由AI修改，须重新训练并由宿主测量后选版；不能冒充本轮成绩或平台history_ids。"
+}

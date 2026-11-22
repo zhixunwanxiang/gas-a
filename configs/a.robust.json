@@ -1,0 +1,8 @@
+{
+  "extends": "a.live.json",
+  "runtime": "../gas1/runtime/a_robust",
+  "controller": {"planning_mode": "compose"},
+  "optimization": {
+    "robustness": {"enabled": true, "max_scenario_f1_drop": 0.02}
+  }
+}

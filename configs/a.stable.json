@@ -1,0 +1,5 @@
+{
+  "extends": "a.adaptive.json",
+  "runtime": "../gas1/runtime/temporal_current_20261120_141414/deployment",
+  "rounds": 1
+}

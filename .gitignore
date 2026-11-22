@@ -1,0 +1,13 @@
+.venv/
+.idea/
+__pycache__/
+*.pyc
+*.egg-info/
+runtime/
+*.tar
+.env
+.env.*
+!.env.local.example
+.swanlab/
+swanlog/
+

@@ -1,0 +1,12 @@
+{
+  "checkpoint_sha256": "sha256:fd1e08b2aad08b2e9754f9b2dfdc029481c0da7ecdedca0abb0ec6fcc818c757",
+  "code_sha256": "sha256:3b4d2ff77de78603547f1f1a8651d050c2cfd65c321321edf239da04b2980313",
+  "dataset_key": "A",
+  "documentation_version": 1,
+  "id": "cpu-a-guide-20261110-v1",
+  "label_status": "draft",
+  "parameter_count": 4326,
+  "source_baseline_id": "cpu-a-20261109-v2",
+  "source_package_sha256": "sha256:a47ec42cef8c9eafc251df8411b70b9cb0e089bf8469cb3566dcb1a35876afc7",
+  "task": "classification"
+}
